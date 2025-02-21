@@ -1,73 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# API Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Bem-vindo ao meu repositório do **API Template**! Este projeto representa uma iniciativa pessoal para criar um template modular e escalável que integra três tecnologias poderosas: **Prisma**, **Firebase Functions** e **NestJS**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🌎 Contexto
+Este projeto é fruto de minha curiosidade e vontade de explorar novas possibilidades tecnológicas. A ideia surgiu da necessidade de modernizar APIs e de testar conceitos que, anteriormente, não eram totalmente compatíveis. Meu objetivo aqui é conectar essas tecnologias de forma harmônica, criando uma solução eficiente e aplicável a cenários reais.
 
-## Description
+## 🔗 Tecnologias Utilizadas
+- **[NestJS](https://nestjs.com/)**: Um framework progressivo para construir aplicações Node.js escaláveis e modulares.
+- **[Prisma](https://www.prisma.io/)**: Um ORM que oferece uma experiência de desenvolvimento intuitiva para manipulação de banco de dados.
+- **[Firebase Functions](https://firebase.google.com/docs/functions)**: Funções serverless para execução de códigos dinâmicos e integrações rápidas.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🔄 Fluxo de Integração
+Este template unifica as tecnologias através de um design arquitetural que reflete minhas práticas e aprendizados:
+1. **NestJS** gerencia a lógica da aplicação e expõe as APIs de maneira estruturada.
+2. **Prisma** simplifica o acesso ao banco de dados, com suporte a consultas SQL eficientes e tipos fortemente tipados.
+3. **Firebase Functions** atua como o ponto de execução serverless, garantindo alta escalabilidade e integração fluida com outros serviços do Firebase.
 
-## Installation
+## 🎨 Objetivo Principal
+Meu objetivo principal com este projeto é explorar e validar a compatibilidade entre Prisma, Firebase Functions e NestJS para:
+- Criar uma solução escalável e modular.
+- Testar soluções modernas para problemas enfrentados em projetos anteriores.
+- Ampliar meu conhecimento e criar um modelo prático que eu possa usar em trabalhos futuros.
 
-```bash
-$ npm install
-```
+## ⚙️ Configuração do Ambiente
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/sua-conta/api-template.git
+   cd api-template
+   ```
 
-## Running the app
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-```bash
-# development
-$ npm run start
+3. Configure as variáveis de ambiente no arquivo `.env`:
+   ```env
+   DATABASE_URL=<sua-url-prisma>
+   FIREBASE_PROJECT_ID=<seu-id-do-projeto>
+   FIREBASE_API_KEY=<sua-api-key>
+   ```
 
-# watch mode
-$ npm run start:dev
+4. Inicie o servidor local:
+   ```bash
+   npm run start:dev
+   ```
 
-# production mode
-$ npm run start:prod
-```
+## 🔧 Recursos Implementados
+- **Modelo de Banco de Dados com Prisma**: Configuração inicial e migração.
+- **Funções Serverless com Firebase**: Roteamento integrado ao NestJS.
+- **Lógica Modular e Clean Code**: Arquitetura que segue os princípios do SOLID.
 
-## Test
+## 🚀 Futuras Expansões
+- Integração com autenticação Firebase.
+- Monitoramento e logging com ferramentas modernas como Prometheus e Grafana.
+- Testes automatizados para validação de desempenho e robustez.
 
-```bash
-# unit tests
-$ npm run test
+## 💡 Aprendizados Esperados
+Este projeto é uma oportunidade para:
+- Testar ideias inovadoras em um ambiente prático.
+- Demonstrar minha experiência em integração de tecnologias complexas.
+- Mostrar como conceitos modernos podem ser aplicados a soluções empresariais reais.
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+---
+Este repositório é parte de minha jornada como desenvolvedor, onde busco constantemente superar desafios e expandir minhas habilidades. Obrigado por conferir!
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
