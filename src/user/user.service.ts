@@ -1,36 +1,68 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PrismaService } from '../prisma/prisma.service';
-import { ConfigService } from '@nestjs/config';
+import { User } from './entities/user.entity';
+import { UserMapper } from './user.mapper';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
-    // const a : Prisma.UserCreateInput
-    // return this.prisma.user.create()
+  // Criação do usuário com dados aninhados para profile
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    // Converte o DTO para a entidade
+    const userEntity = UserMapper.toEntity(createUserDto);
+    // Converte a entidade para o formato Prisma
+    const prismaData = UserMapper.toPrismaCreate(userEntity);
+
+    const createdUser = await this.prisma.user.create({
+      data: prismaData,
+      include: { profile: true },
+    });
+
+    return new User(createdUser);
   }
 
-  findAll() {
-    console.log(this.configService.get<string>('BASE_URL'));
-    console.log(this.configService.get<string>('NODE_ENV'));
-    // return `This action returns all user ${url}`;
+  // Retorna todos os usuários com seus profiles
+  async findAll(): Promise<User[]> {
+    const users = await this.prisma.user.findMany({
+      include: { profile: true },
+    });
+    return users.map((user) => new User(user));
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  // Retorna um usuário pelo ID
+  async findOne(id: number): Promise<User> {
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+      include: { profile: true },
+    });
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    return new User(user);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  // Atualiza um usuário e seu profile
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    // Verifica se o usuário existe
+    await this.findOne(id);
+    const prismaData = UserMapper.toPrismaUpdate(updateUserDto);
+
+    const updatedUser = await this.prisma.user.update({
+      where: { id },
+      data: prismaData,
+      include: { profile: true },
+    });
+    return new User(updatedUser);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  // Remove um usuário (e seu profile, se existir)
+  async remove(id: number): Promise<void> {
+    await this.findOne(id);
+    await this.prisma.user.delete({
+      where: { id },
+    });
   }
 }
