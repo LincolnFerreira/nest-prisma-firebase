@@ -11,12 +11,24 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 import { UserMapper } from './user.mapper';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Cria um novo usuário' })
+  @ApiCreatedResponse({
+    description: 'O usuário foi criado com sucesso.',
+  })
+  @ApiBody({ type: CreateUserDto })
+  @ApiBadRequestResponse({ description: 'Requisição inválida.' })
   async create(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.create(createUserDto);
     return UserMapper.toResponse(user);

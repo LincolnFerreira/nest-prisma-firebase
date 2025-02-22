@@ -18,6 +18,15 @@ function staticImplements<T>() {
 
 @staticImplements<IMapperStatic<User, CreateUserDto, UpdateUserDto>>()
 export class UserMapper {
+  static toEntity(createUserDto: CreateUserDto): User {
+    return new User({
+      email: createUserDto.email,
+      name: createUserDto.name,
+      profile: createUserDto.profile
+        ? { bio: createUserDto.profile.bio }
+        : undefined,
+    });
+  }
   static toEntityUpdate(user: User, updateUserDto: UpdateUserDto): User {
     return new User({
       ...user,
@@ -56,26 +65,3 @@ export class UserMapper {
     return { id, email, name, profile };
   }
 }
-
-// Testando os métodos estáticos diretamente
-const createUserDto: CreateUserDto = {
-  email: 'test@example.com',
-  name: 'Test User',
-  profile: { bio: 'Bio info' },
-};
-const updateUserDto: UpdateUserDto = {
-  email: 'updated@example.com',
-  name: 'Updated User',
-  profile: { bio: 'Updated Bio' },
-};
-const user = new User({
-  email: 'test@example.com',
-  name: 'Test User',
-  profile: { bio: 'Bio info' },
-});
-
-console.log('Entity from CreateUserDto:', UserMapper.toEntity(createUserDto));
-console.log('Entity updated:', UserMapper.toEntityUpdate(user, updateUserDto));
-console.log('Prisma create data:', UserMapper.toPrismaCreate(user));
-console.log('Prisma update data:', UserMapper.toPrismaUpdate(updateUserDto));
-console.log('Response data:', UserMapper.toResponse(user));

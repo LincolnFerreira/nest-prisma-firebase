@@ -39,7 +39,7 @@ export const createNestServer = async (expressInstance: express.Express) => {
   // Enable CORS for the application
   app.enableCors();
   // Initialize the application and return it
-  // await app.listen(3000);
+  await app.listen(3000);
   return app.init();
 };
 
